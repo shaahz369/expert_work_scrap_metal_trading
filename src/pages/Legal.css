@@ -1,0 +1,26 @@
+.legal-content {
+  max-width: 760px;
+}
+
+.legal-content__placeholder-note {
+  background: #fff4e5;
+  border: 1px solid #f3d9ab;
+  color: #7a5410;
+  padding: 14px 18px;
+  font-size: 0.9rem;
+  margin-bottom: 36px;
+}
+
+.legal-content h2 {
+  font-size: 1.2rem;
+  margin: 30px 0 12px;
+}
+
+.legal-content p {
+  color: var(--steel);
+  margin-bottom: 4px;
+}
+
+.legal-content a {
+  color: var(--red);
+}

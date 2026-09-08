@@ -1,0 +1,38 @@
+.page-hero {
+  background: var(--navy);
+  background-image:
+    linear-gradient(115deg, var(--navy) 55%, var(--navy-mid) 100%);
+  position: relative;
+  overflow: hidden;
+  padding: 76px 0 68px;
+}
+
+.page-hero::after {
+  content: "";
+  position: absolute;
+  right: -6%;
+  top: -30%;
+  width: 480px;
+  height: 480px;
+  background: var(--red);
+  opacity: 0.1;
+  clip-path: polygon(30% 0%, 100% 0%, 70% 100%, 0% 100%);
+}
+
+.page-hero__inner {
+  position: relative;
+  z-index: 1;
+}
+
+.page-hero__title {
+  color: var(--white);
+  font-size: clamp(2.1rem, 4.4vw, 3.1rem);
+  max-width: 760px;
+}
+
+.page-hero__desc {
+  margin-top: 18px;
+  color: rgba(255, 255, 255, 0.68);
+  max-width: 620px;
+  font-size: 1.05rem;
+}

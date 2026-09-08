@@ -1,0 +1,46 @@
+.strengths-cards {
+  gap: 30px;
+}
+
+.strength-tile {
+  background: var(--white);
+  border: 1px solid var(--line);
+  overflow: hidden;
+}
+
+.strength-tile__media {
+  aspect-ratio: 16/10;
+  overflow: hidden;
+}
+
+.strength-tile__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.strength-tile__body {
+  padding: 26px 26px 30px;
+  border-top: 3px solid var(--navy);
+  position: relative;
+}
+
+.strength-tile__body::before {
+  content: "";
+  position: absolute;
+  top: -3px;
+  left: 0;
+  width: 46px;
+  height: 3px;
+  background: var(--red);
+}
+
+.strength-tile__body h2 {
+  font-size: 1.15rem;
+  margin-bottom: 10px;
+}
+
+.strength-tile__body p {
+  color: var(--steel);
+  font-size: 0.95rem;
+}

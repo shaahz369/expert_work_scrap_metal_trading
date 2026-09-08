@@ -1,0 +1,44 @@
+.industries-cards {
+  gap: 30px;
+}
+
+.industry-card {
+  background: var(--white);
+  border: 1px solid var(--line);
+}
+
+.industry-card__media {
+  aspect-ratio: 4/3;
+  overflow: hidden;
+  position: relative;
+}
+
+.industry-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.35s ease;
+}
+
+.industry-card:hover .industry-card__media img {
+  transform: scale(1.04);
+}
+
+.industry-card h2 {
+  font-size: 1.08rem;
+  padding: 20px 22px;
+  border-top: 3px solid var(--red);
+}
+
+.industries-note__inner {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.industries-note__inner .lede {
+  max-width: 640px;
+  margin: 6px auto 18px;
+}
