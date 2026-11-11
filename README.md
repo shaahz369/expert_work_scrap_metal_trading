@@ -16,6 +16,7 @@ expert-work-scrap/
 ├── index.html                  # HTML shell, fonts, meta/SEO tags
 ├── vite.config.js
 ├── package.json
+├── check-images.mjs            # Script that tests every image link (see section 5)
 ├── public/
 │   ├── favicon.png
 │   └── favicon-32.png
@@ -63,9 +64,10 @@ Then open the URL shown in the terminal (typically `http://localhost:5173`).
 Other commands:
 
 ```bash
-npm run build     # Production build → dist/
-npm run preview   # Preview the production build locally
-npm run lint      # Lint the codebase (oxlint)
+npm run build          # Production build → dist/
+npm run preview        # Preview the production build locally
+npm run lint           # Lint the codebase (oxlint)
+node check-images.mjs  # Test that every image link in images.js loads
 ```
 
 ---
@@ -100,26 +102,50 @@ environment. To connect it, open `handleSubmit` in `Contact.jsx` and either:
 
 ---
 
-## 5. Replacing Placeholder Images
+## 5. Images
 
 The company profile PDF did not include separate, high-resolution marketing photography (its
-images are flattened into the profile's page designs), so the site currently uses **licensed
-stock photography** from Unsplash that matches the real industry (scrap yards, industrial
-material handling, metal processing) as a professional placeholder.
+images are flattened into the profile's page designs), so the site uses **free stock
+photography from Unsplash** that matches the real industry (scrap yards, excavators and metal
+piles, metal recycling, shipping ports, factories, oil and gas sites). These are a professional
+placeholder. Unsplash photos are free to use commercially under the
+[Unsplash License](https://unsplash.com/license).
 
-**To swap in the company's own photos:**
+All images are loaded from links in **one file**: `src/assets/images.js`. Each image has a
+key name (for example `hero`, `serviceSourcing`, `industryOilGas`). The pages read these keys,
+so changing a link in this file changes the image everywhere it is used. No other file needs
+to change.
+
+### Change an image to another Unsplash photo
+
+1. Open the photo page on [unsplash.com](https://unsplash.com).
+2. Right-click the photo, choose **Copy image address**.
+3. Copy only the part that looks like `https://images.unsplash.com/photo-XXXXXXXX`.
+4. In `src/assets/images.js`, replace the old photo ID in the matching key. Keep the end of
+   the link (`?auto=format&fit=crop&w=...&q=80`) so the image is sized and compressed.
+
+### Test that all image links work
+
+Run this in the project folder:
+
+```bash
+node check-images.mjs
+```
+
+It checks every link in `images.js`. Each line shows `OK` or `BROKEN`. If an image shows as
+broken, replace that key with another photo.
+
+### Swap in the company's own photos
 
 1. Add your image files to `src/assets/images/` (create the folder if needed).
 2. In `src/assets/images.js`, import the file at the top, e.g.:
    ```js
    import heroYard from "./images/hero-yard.jpg";
    ```
-3. Replace the matching placeholder URL value with your imported variable, e.g.:
+3. Replace the matching link with your imported variable, e.g.:
    ```js
    hero: heroYard,   // was: "https://images.unsplash.com/..."
    ```
-
-No other file needs to change — every page pulls images from this one config file.
 
 ---
 
@@ -127,7 +153,9 @@ No other file needs to change — every page pulls images from this one config f
 
 This is a static site after `npm run build` (output in `dist/`). Any static host works:
 
-- **Netlify / Vercel:** connect the repo, build command `npm run build`, publish directory `dist`.
+- **Netlify / Vercel:** connect the repo, build command `npm run build`, publish directory
+  `dist`. This project is deployed on Vercel: every pull request gets a preview link, and
+  merging to `main` updates the live site.
 - **Any static server / cPanel / S3 / Cloudflare Pages:** run `npm run build` locally, then
   upload the contents of `dist/` to your web root.
 
